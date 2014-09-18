@@ -36,7 +36,7 @@ package body Ada.Containers.Forward_Iterators is
          pragma Check (Validate, Reference (Result) = null);
       else
          declare
-            New_Node : constant Node_Access := new Node'(
+            New_Node : Node_Access := new Node'(
                Reference_Count => 1,
                Next => null,
                Item => new Element_Type'(Element (Object.Last_Input_Cursor)));
@@ -50,6 +50,7 @@ package body Ada.Containers.Forward_Iterators is
             Object.Last := New_Node;
             Retain (New_Node);
             Assign (Result, New_Node);
+            Release (New_Node);
          end;
       end if;
    end Append;
