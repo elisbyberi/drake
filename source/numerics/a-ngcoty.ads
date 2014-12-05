@@ -67,23 +67,24 @@ package Ada.Numerics.Generic_Complex_Types is
 
    function "**" (Left : Complex; Right : Integer) return Complex;
 
-   function "+" (Right : Imaginary) return Imaginary;
-   pragma Inline ("+");
-   function "-" (Right : Imaginary) return Imaginary;
-   pragma Inline ("-");
+   function "+" (Right : Imaginary) return Imaginary
+      with Import, Convention => Intrinsic;
+   function "-" (Right : Imaginary) return Imaginary
+      with Import, Convention => Intrinsic;
    function Conjugate (X : Imaginary) return Imaginary
       renames "-";
    function "abs" (Right : Imaginary) return Real'Base;
    pragma Inline ("abs");
+   --  [gcc-4.9] could not make it intrinsic
 
-   function "+" (Left, Right : Imaginary) return Imaginary;
-   pragma Inline ("+");
-   function "-" (Left, Right : Imaginary) return Imaginary;
-   pragma Inline ("-");
+   function "+" (Left, Right : Imaginary) return Imaginary
+      with Import, Convention => Intrinsic;
+   function "-" (Left, Right : Imaginary) return Imaginary
+      with Import, Convention => Intrinsic;
    function "*" (Left, Right : Imaginary) return Real'Base;
    pragma Inline ("*");
-   function "/" (Left, Right : Imaginary) return Real'Base;
-   pragma Inline ("/");
+   function "/" (Left, Right : Imaginary) return Real'Base
+      with Import, Convention => Intrinsic;
 
    function "**" (Left : Imaginary; Right : Integer) return Complex;
 
@@ -128,10 +129,12 @@ package Ada.Numerics.Generic_Complex_Types is
    function "-" (Left : Imaginary; Right : Real'Base) return Complex;
    function "-" (Left : Real'Base; Right : Imaginary) return Complex;
    pragma Inline ("-");
-   function "*" (Left : Imaginary; Right : Real'Base) return Imaginary;
-   function "*" (Left : Real'Base; Right : Imaginary) return Imaginary;
-   pragma Inline ("*");
-   function "/" (Left : Imaginary; Right : Real'Base) return Imaginary;
+   function "*" (Left : Imaginary; Right : Real'Base) return Imaginary
+      with Import, Convention => Intrinsic;
+   function "*" (Left : Real'Base; Right : Imaginary) return Imaginary
+      with Import, Convention => Intrinsic;
+   function "/" (Left : Imaginary; Right : Real'Base) return Imaginary
+      with Import, Convention => Intrinsic;
    function "/" (Left : Real'Base; Right : Imaginary) return Imaginary;
    pragma Inline ("/");
 

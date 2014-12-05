@@ -251,19 +251,9 @@ package body Ada.Numerics.Generic_Complex_Types is
       return Right;
    end "+";
 
-   function "+" (Right : Imaginary) return Imaginary is
-   begin
-      return Right;
-   end "+";
-
    function "+" (Left, Right : Complex) return Complex is
    begin
       return (Re => Left.Re + Right.Re, Im => Left.Im + Right.Im);
-   end "+";
-
-   function "+" (Left, Right : Imaginary) return Imaginary is
-   begin
-      return Imaginary (Real'Base (Left) + Real'Base (Right));
    end "+";
 
    function "+" (Left : Complex; Right : Real'Base) return Complex is
@@ -301,19 +291,9 @@ package body Ada.Numerics.Generic_Complex_Types is
       return (Re => -Right.Re, Im => -Right.Im);
    end "-";
 
-   function "-" (Right : Imaginary) return Imaginary is
-   begin
-      return Imaginary (-Real'Base (Right));
-   end "-";
-
    function "-" (Left, Right : Complex) return Complex is
    begin
       return (Re => Left.Re - Right.Re, Im => Left.Im - Right.Im);
-   end "-";
-
-   function "-" (Left, Right : Imaginary) return Imaginary is
-   begin
-      return Imaginary (Real'Base (Left) - Real'Base (Right));
    end "-";
 
    function "-" (Left : Complex; Right : Real'Base) return Complex is
@@ -395,16 +375,6 @@ package body Ada.Numerics.Generic_Complex_Types is
          Im => Real'Base (Left) * Right.Re);
    end "*";
 
-   function "*" (Left : Imaginary; Right : Real'Base) return Imaginary is
-   begin
-      return Imaginary (Real'Base (Left) * Right);
-   end "*";
-
-   function "*" (Left : Real'Base; Right : Imaginary) return Imaginary is
-   begin
-      return Imaginary (Left * Real'Base (Right));
-   end "*";
-
    function "/" (Left, Right : Complex) return Complex is
    begin
       return (
@@ -412,11 +382,6 @@ package body Ada.Numerics.Generic_Complex_Types is
             / (Right.Re * Right.Re + Right.Im * Right.Im),
          Im => (Left.Im * Right.Re - Left.Re * Right.Im)
             / (Right.Re * Right.Re + Right.Im * Right.Im));
-   end "/";
-
-   function "/" (Left, Right : Imaginary) return Real'Base is
-   begin
-      return Real'Base (Left) / Real'Base (Right);
    end "/";
 
    function "/" (Left : Complex; Right : Real'Base) return Complex is
@@ -447,11 +412,6 @@ package body Ada.Numerics.Generic_Complex_Types is
             / (Right.Re * Right.Re + Right.Im * Right.Im),
          Im => (Real'Base (Left) * Right.Re)
             / (Right.Re * Right.Re + Right.Im * Right.Im));
-   end "/";
-
-   function "/" (Left : Imaginary; Right : Real'Base) return Imaginary is
-   begin
-      return Imaginary (Real'Base (Left) / Right);
    end "/";
 
    function "/" (Left : Real'Base; Right : Imaginary) return Imaginary is
